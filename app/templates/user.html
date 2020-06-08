@@ -1,0 +1,160 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div class=" container-fluid px-4 ">
+        <div class="no-gutters py-4">
+
+
+        <div class="row">
+                           <div class="col-sm-2 col-lg-2 col-md-2">
+                            <div class="col-lg-12 col-md-12 col-sm-12 mb-4">
+                                <div class="stats-small stats-small--1 card card-small">
+                                    <div class="card-body p-0 d-flex">
+                                        <div class="d-flex flex-column m-auto">
+                                            <div class="stats-small__data text-center">
+                                                <span class="stats-small__label text-uppercase">All Users</span>
+                                                <h6 id ="count" class=" stats-small__value count my-3">0</h6>
+                                            </div>
+                                            <div class="stats-small__data">
+
+                                                <span class="stats-small__percentage stats-small__percentage--increase">4.7%</span>
+                                            </div>
+                                        </div>
+                                        <canvas height="120" class="blog-overview-stats-small-1"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 mb-4">
+                                <div class="stats-small stats-small--1 card card-small">
+                                    <div class="card-body p-0 d-flex">
+                                        <div class="d-flex flex-column m-auto">
+                                            <div class="stats-small__data text-center">
+                                                <span class="stats-small__label text-uppercase">All User Divaces</span>
+                                                <h6 class="stats-small__value count my-3">14</h6>
+                                            </div>
+                                            <div class="stats-small__data">
+                                                <span class="stats-small__percentage stats-small__percentage--increase">12.4%</span>
+                                            </div>
+                                        </div>
+                                        <canvas height="120" class="blog-overview-stats-small-2"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 mb-4 ">
+                                <div class="stats-small stats-small--1 card card-small">
+                                    <div class="card-body p-0 d-flex">
+                                        <div class="d-flex flex-column m-auto">
+                                            <div class="stats-small__data text-center">
+                                                <span class="stats-small__label text-uppercase">weekly active users </span>
+                                                <h6 class="stats-small__value count my-3">123</h6>
+                                            </div>
+                                            <div class="stats-small__data">
+                                                <span class="stats-small__percentage stats-small__percentage--decrease">3.8%</span>
+                                            </div>
+                                        </div>
+                                        <canvas height="120" class="blog-overview-stats-small-3"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 mb-4">
+                                <div class="stats-small stats-small--1 card card-small">
+                                    <div class="card-body p-0 d-flex">
+                                        <div class="d-flex flex-column m-auto">
+                                            <div class="stats-small__data text-center">
+                                                    <span class="stats-small__label text-uppercase">monthly active users</span>
+                                                <h6 class="stats-small__value count my-3">534</h6>
+                                            </div>
+                                            <div class="stats-small__data">
+                                                <span class="stats-small__percentage stats-small__percentage--decrease">3.8%</span>
+                                            </div>
+                                        </div>
+                                        <canvas height="120" class="blog-overview-stats-small-3"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 p-0">
+                        <div class="stats-small stats-small--1 card card-small">
+                                <div class="card-body ">
+                                <table class="table table-borderless">
+
+                                    <tr valign="top">
+                                        <td class="text-center "><img class="user-avatar rounded-circle mr-2" src="{{ user.avatar(128) }}"></td>
+
+                                        <td>
+                                        <div class="col-sm-12 col-lg-12 col-md-12 ">
+                                            <div class="form-group">
+                                                    <span>username: <strong> {{ user.username }}</strong></span>
+                                            </div>
+                                            <div class="form-group">
+                                                    <span>email: <strong>{{ user.email}}</strong></span>
+                                                </div>
+                                            <div class="form-group">
+                                                     <span>name:<strong>{{ user.first_name}} </strong></span>
+
+                                                </div>
+                                                <div class="form-group">
+                                                      <span>surname: <strong>{{ user.last_name}}</strong></span>
+                                                </div>
+
+
+                                                    {% if user.last_seen %}<p>Last seen on: {{user.last_seen}}</p>{% endif %}
+
+                                                    {% if user == current_user %}
+                                                    <p><a href="{{ url_for('main.edit_profile') }}" class="stretched-link">Edit your profile</a></p>
+                                                    {% endif %}
+
+                                                    {% if form %}
+                                                    <form action="" method="post">
+                                                        <div class="col-sm-9">
+                                                        <div class="form-group align-items-center">
+                                                            {% if user == current_user %}
+                                                            {{ form.hidden_tag() }}
+                                                             <p>{{ form.mac_addres(class_='form-control', size=32)  }}</p>
+                                                             <p>{{ form.submit(class_='btn btn-primary btn-block px-md-1') }}</p>
+
+                                                            {% endif %}
+                                                        </div>
+                                                        </div>
+                                                    </form>
+                                                        </div>
+
+
+
+
+
+                                        </td>
+
+                                    </tr>
+                                </table>
+                                <hr>
+                                          {% for device in user.devices  %}
+                                                            <div>
+                                                                <p>{{ device.mac_addres}}</p>
+                                                            </div>
+                                                        {% endfor %}
+                                                    {% endif %}
+                                </div>
+                                </div>
+                            </div>
+                        <div class="col-sm-2 col-lg-2 col-md-2">
+                            <div class="col-lg-12 col-md-12 col-sm-12 mb-4">
+                                <div class="stats-small-one stats-small--1 card card-small">
+                                    <div class="card-body p-0 d-flex">
+                                        <div class="d-flex flex-column m-auto">
+                                            <span class="stats-small__label text-uppercase mt=5">Active Device</span>
+                                            <div class="stats-small__data text-center">
+                                                <span class="stats-small__label text-uppercase mt=5">Active Device</span>
+
+                                                <span id="users-devices-list" class="stats-small__label"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                                </div>
+                                </div>
+                    </div>
+{% endblock %}

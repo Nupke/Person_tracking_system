@@ -1,0 +1,24 @@
+    <table class="table table-hover">
+        <tr>
+            <td width="70px">
+                <a href="{{ url_for('main.user', username=device.owner.username) }}">
+                    <img src="{{ device.owner.avatar(70) }}" />
+                </a>
+            </td>
+            <td>
+                {% set user_link %}
+                    <span class="user_popup">
+                    <a href="{{ url_for('main.user', username=device.owner.username) }}">
+                        {{ device.owner.username }}
+                    </a>
+                    </span>
+                {% endset %}
+                <a href="{{ url_for('main.user', username=device.owner.username) }}">
+                    {{ device.owner.username }}
+                </a>
+                </a>
+                says:
+                <br>
+            </td>
+        </tr>
+    </table>

@@ -46,6 +46,10 @@ $(document).ready(function(){
     console.log('jsonObject', jsonObject);
     //receive details from server
     socket.on('dump', function(msg){
+        console.log(msg.data)
+        // var rect = $( "#myContainer" ).offset();
+        //     console.log('top'+rect );
+
      Move();
 
 
@@ -55,7 +59,7 @@ $(document).ready(function(){
 
     switch (msg.data['topic']) {
 
-        case 'sensors/drone01/altitude':
+        case 'detectionv1/sensor/ble_devices_scanner/state':
             console.log('one');
             connectTopic( 'drone1', msg.data.address, msg.data.rssi);
 
@@ -77,7 +81,7 @@ $(document).ready(function(){
                     for (var i = 0; i < numbers_received.length; i++){
                         numbers_string = numbers_string + '<p>' + numbers_received[i].toString() + '</p>';
                         console.log(numbers_string)
-                        s == i
+                        s = i
 
                     }
                     document.getElementById("all_devices_around").innerText= s;
@@ -85,7 +89,7 @@ $(document).ready(function(){
 
 
             return;
-        case 'sensors/drone02/altitude':
+        case 'detectionv2/sensor/ble_devices_scanner/state':
             console.log('two');
             connectTopic( 'drone2', msg.data.address, msg.data.rssi)
 
@@ -99,7 +103,7 @@ $(document).ready(function(){
                 }
             return;
 
-        case 'sensors/drone03/altitude':
+        case 'detectionv3/sensor/ble_devices_scanner/state':
             console.log('tree');
             connectTopic( 'drone3', msg.data.address, msg.data.rssi)
 
@@ -130,7 +134,7 @@ $(document).ready(function(){
                   console.log('test ConnectTopic',users[i].devices[y]);
                   if(users[i].devices[y].mac_addres == address){
                      users[i].devices[y].position[drone] =  rssi;
-                     setTimeout(function () {users[i].devices[y].position[drone] = NaN}, 150000);
+                     // setTimeout(function () {users[i].devices[y].position[drone] = NaN}, 150000);
                   }
               }
            }
@@ -140,7 +144,8 @@ $(document).ready(function(){
 
 
     function Move(){
-            var horizontal = 399;
+            var rect = document.getElementById('myContainer').getBoundingClientRect();
+            var horizontal = rect.width/2;
             var vertical = 0;
             var users_in_room =0;
             var device_in_room =0;
@@ -161,12 +166,13 @@ $(document).ready(function(){
 
                         console.log('a b c', a, b ,c);
 
-                        if(a && b && c !=NaN ){
+                        if(a && b &&c  !=NaN ){
                             users_in_room +=1;
                             document.getElementById("users_in_room").innerText = users_in_room;
                             elem.style.display ="block";
-                            elem.style.left = horizontal - (Math.abs(a)*3.9) +  (Math.abs(b)*3.9) +"px";
-                            elem.style.top = vertical + (Math.abs(c)*5.5) +"px";
+
+                            elem.style.left = (horizontal - ((horizontal / 80) * Math.abs(a)) + ((horizontal / 80) * Math.abs(b)) +"px");
+                            elem.style.top =  vertical + ((rect.height / 80 ) * Math.abs(c) ) + "px";
                         } else {
                             users_in_room -=1;
                             elem.style.display ="none";

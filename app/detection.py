@@ -12,6 +12,9 @@ def connect():
     # need visibility of the global thread object
     # global thread
     emit('my response', {'data':'Connected'})
+    mqtt.subscribe("detectionv1/sensor/ble_devices_scanner/state")
+    mqtt.subscribe("detectionv2/sensor/ble_devices_scanner/state")
+    mqtt.subscribe("detectionv3/sensor/ble_devices_scanner/state")
     mqtt.subscribe("sensors/drone01/altitude")
     print('client has been connected')
 
@@ -30,9 +33,10 @@ def handle_publish(json_str):
 @socketio.on('subscribe')
 def handle_subscribe(json_str):
     data = json.loads(json_str)
-    mqtt.subscribe(data["sensors/drone01/altitude"])
-    mqtt.subscribe(data["sensors/drone02/altitude"])
-    mqtt.subscribe(data["sensors/drone03/altitude"])
+    mqtt.subscribe(data["detectionv1/sensor/ble_devices_scanner/state"])
+    mqtt.subscribe(data["detectionv2/sensor/ble_devices_scanner/state"])
+    mqtt.subscribe(data["detectionv3/sensor/ble_devices_scanner/state"])
+
 
 @mqtt.on_connect()
 def handle_connect(client, userdata, flags, rc):

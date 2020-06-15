@@ -92,7 +92,7 @@
                                             </div>
                                             <div class="stats-small__data">
 
-                                                <span class="stats-small__percentage stats-small__percentage--increase">4.7%</span>
+
                                             </div>
                                         </div>
                                         <canvas height="120" class="blog-overview-stats-small-1"></canvas>
@@ -107,9 +107,7 @@
                                                 <span class="stats-small__label text-uppercase">All User Divaces</span>
                                                 <h6 id="all_devices" class="stats-small__value count my-3">0</h6>
                                             </div>
-                                            <div class="stats-small__data">
-                                                <span class="stats-small__percentage stats-small__percentage--increase">12.4%</span>
-                                            </div>
+
                                         </div>
                                         <canvas height="120" class="blog-overview-stats-small-2"></canvas>
                                     </div>
@@ -123,9 +121,7 @@
                                                 <span class="stats-small__label text-uppercase">Users in Room</span>
                                                 <h6 id="users_in_room" class="stats-small__value count my-3">0</h6>
                                             </div>
-                                            <div class="stats-small__data">
-                                                <span class="stats-small__percentage stats-small__percentage--decrease">3.8%</span>
-                                            </div>
+
                                         </div>
                                         <canvas height="120" class="blog-overview-stats-small-3"></canvas>
                                     </div>
@@ -137,11 +133,9 @@
                                         <div class="d-flex flex-column m-auto">
                                             <div class="stats-small__data text-center">
                                                 <span class="stats-small__label text-uppercase">Divaces in Room</span>
-                                                <h6  id="all_devices_around" class="stats-small__value count my-3">0</h6>
+                                                <h6 id="all_devices_around" class="stats-small__value count my-3">0</h6>
                                             </div>
-                                            <div class="stats-small__data">
-                                                <span class="stats-small__percentage stats-small__percentage--decrease">3.8%</span>
-                                            </div>
+
                                         </div>
                                         <canvas height="120" class="blog-overview-stats-small-3"></canvas>
                                     </div>
@@ -158,7 +152,7 @@
                             </div>
                             <div class="card-body pt-0">
                                 <div class="row border-bottom py-2 bg-  light">
-                                    <div class="myContainer col-12 sol-sm-12">
+                                    <div id="myContainer" class="myContainer col-12 sol-sm-12">
                                         <div class="input-daterange input-group input-group-sm my-auto ml-auto mr-auto ml-sm-auto mr-sm-0">
                                           {% for user in users %}
                                             <img id="{{user.username}}" class="user-avatar rounded-circle mr-2 user-animation" src=" {{ user.avatar(128) }}" alt="User Avatar" style="display: none">

@@ -1,1 +1,1 @@
-FLASK_APP=smer.py
+FLASK_APP=smerovacka.py

@@ -134,7 +134,7 @@ $(document).ready(function(){
                   console.log('test ConnectTopic',users[i].devices[y]);
                   if(users[i].devices[y].mac_addres == address){
                      users[i].devices[y].position[drone] =  rssi;
-                     // setTimeout(function () {users[i].devices[y].position[drone] = NaN}, 150000);
+                     //setTimeout(function () {users[i].devices[y].position[drone] = NaN}, 15000);
                   }
               }
            }
@@ -166,13 +166,13 @@ $(document).ready(function(){
 
                         console.log('a b c', a, b ,c);
 
-                        if(a && b &&c  !=NaN ){
+                        if(a && b   !=NaN ){
                             users_in_room +=1;
                             document.getElementById("users_in_room").innerText = users_in_room;
                             elem.style.display ="block";
 
                             elem.style.left = (horizontal - ((horizontal / 80) * Math.abs(a)) + ((horizontal / 80) * Math.abs(b)) +"px");
-                            elem.style.top =  vertical + ((rect.height / 80 ) * Math.abs(c) ) + "px";
+                            elem.style.top =  vertical + ((rect.height / 90) * Math.abs(c) ) + "px";
                         } else {
                             users_in_room -=1;
                             elem.style.display ="none";

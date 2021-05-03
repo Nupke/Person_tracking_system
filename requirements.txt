@@ -42,7 +42,7 @@ monotonic==1.5
 paho-mqtt==1.5.0
 Pillow==7.1.2
 psycopg2==2.8.5
-Pygments==2.6.1
+Pygments==2.7.4
 PyJWT==1.7.1
 python-dateutil==2.8.1
 python-dotenv==0.13.0

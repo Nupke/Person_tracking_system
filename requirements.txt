@@ -43,7 +43,7 @@ paho-mqtt==1.5.0
 Pillow==7.1.2
 psycopg2==2.8.5
 Pygments==2.7.4
-PyJWT==1.7.1
+PyJWT==2.4.0
 python-dateutil==2.8.1
 python-dotenv==0.13.0
 python-editor==1.0.4
